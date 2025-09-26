@@ -6,6 +6,7 @@ import Questions from './pages/Questions';
 import Quizzes from './pages/Quizzes';
 import QuizList from './pages/QuizList';
 import Navbar from './components/NavBar';
+import Result from './pages/Result';
 
 function App() {
   
@@ -16,6 +17,7 @@ function App() {
        <Routes>
         <Route path="/" element={<QuizList/>} />
         <Route path="/quiz/:id" element={<Quiz/>} />
+        <Route path="/quiz/:id/result" element={<Result/>} />
         <Route path="/questions" element={<Questions/>} />
         <Route path="/quizzes" element={<Quizzes/>} />
         <Route path="*" element={<h1>404 Not Found</h1>} />
