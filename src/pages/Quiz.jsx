@@ -8,12 +8,13 @@ const Quiz = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState({});
   const [loading, setLoading] = useState(true);
-
+  const [timeLeft, setTimeLeft] = useState(600); 
   useEffect(() => {
     const loadQuiz = async () => {
       try {
         const data = await QuizService.getById(id);
         setQuiz(data.quiz);
+        setTimeLeft((data.quiz.questions?.length || 0) * 2 * 60);
       } catch (err) {
         console.error("Error loading quiz:", err);
       } finally {
@@ -22,6 +23,18 @@ const Quiz = () => {
     };
     loadQuiz();
   }, [id]);
+
+   
+  useEffect(() => {
+    if (timeLeft <= 0) {
+      handleSubmit(); 
+      return;
+    }
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [timeLeft]);
 
   const handleSelectAnswer = (questionId, optionId) => {
     setAnswers((prev) => ({ ...prev, [questionId]: optionId }));
@@ -57,6 +70,12 @@ const handleSubmit = async () => {
   }
 };
 
+const formatTime = (seconds) => {
+    const m = String(Math.floor(seconds / 60)).padStart(2, "0");
+    const s = String(seconds % 60).padStart(2, "0");
+    return `${m}:${s}`;
+  };
+
   if (loading) return <p className="text-center mt-6">Loading quiz...</p>;
   if (!quiz) return <p className="text-center mt-6">Quiz not found</p>;
 
@@ -65,6 +84,14 @@ const handleSubmit = async () => {
 
   return (
     <div className="max-w-4xl mx-auto mt-10 p-6">
+
+       {/* Header with timer */}
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-2xl font-bold text-green-700">{quiz.title}</h1>
+        <span className="text-lg font-semibold text-red-600">
+          ⏳ {formatTime(timeLeft)}
+        </span>
+      </div>
       <h1 className="text-3xl font-bold text-green-700 mb-6 text-center">
         {quiz.title}
       </h1>
