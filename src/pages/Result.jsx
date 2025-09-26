@@ -38,7 +38,7 @@ const Result = () => {
             className="bg-white shadow rounded p-4 border-l-4"
           >
             <p className="font-semibold mb-2">
-              Q{idx + 1}. {item.question.title}
+              Q{idx + 1}. {item.question.title} 
             </p>
             <ul className="space-y-2">
               {item.question.options.map((opt) => {
@@ -58,11 +58,15 @@ const Result = () => {
                   >
                     {opt.option}
                     {isCorrect && (
-                      <span className="ml-2 text-green-600 font-bold">(Correct)</span>
+                      <span className="ml-2 text-green-600 font-bold">(Correct )</span>
                     )}
                     {isUserAnswer && !isCorrect && (
                       <span className="ml-2 text-red-600 font-bold">(Your Answer)</span>
                     )}
+                    {isUserAnswer && isCorrect && (
+                      <span className="ml-2 text-green-600">✅</span>
+                    )}
+                    
                   </li>
                 );
               })}
