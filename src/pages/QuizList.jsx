@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import QuizService from "../services/quiz.service";
+import QuizInstructions from "../components/QuizInstructions";
 
 const QuizList = () => {
   const [quizzes, setQuizzes] = useState([]);
   const navigate = useNavigate();
-
+const [selectedQuiz, setSelectedQuiz] = useState(null);
   useEffect(() => {
     const loadQuizzes = async () => {
       try {
@@ -19,6 +20,7 @@ const QuizList = () => {
   }, []);
 
   const handleStartQuiz = (quizId) => {
+    
     navigate(`/quiz/${quizId}`);
   };
 
@@ -35,12 +37,18 @@ const QuizList = () => {
             <p className="text-gray-600 mt-2">Questions: {quiz.questions.length}</p>
             <button
               className="mt-4 bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-              onClick={() => handleStartQuiz(quiz._id)}
+              onClick={() => setSelectedQuiz(quiz)}
             >
               Start Quiz
             </button>
           </div>
         ))}
+   {selectedQuiz && (
+        <QuizInstructions
+          quiz={selectedQuiz}
+          onClose={() => setSelectedQuiz(null)}
+        />
+      )}
       </div>
     </div>
   );
