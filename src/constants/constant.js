@@ -1,0 +1,1 @@
+export const CATGEORY=["JavaScript","Java","ReactJS,NodeJS","MongoDB","MySQL","HTML","CSS","Data Structures","Algorithms","Python","C++","C#","Ruby","PHP","Swift","Kotlin"];
