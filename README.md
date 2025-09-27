@@ -1,16 +1,69 @@
-# React + Vite
+# Quiz App 🎯
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack quiz application built with **React (Vite)** on the frontend and a backend API (Node/Express + MongoDB assumed).  
+This app allows creating questions, grouping them into quizzes, and attempting quizzes with features like instructions, timer, navigation, and results.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## React Compiler
+- **Questions Management**
+  - Add, edit, delete questions with options and correct answers.
+  - Filter questions by category.
 
-The React Compiler is not enabled on this template. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Quizzes Management**
+  - Create quizzes by selecting questions.
+  - View list of all quizzes.
+  - Edit and delete quizzes.
 
-## Expanding the ESLint configuration
+- **Quiz Attempt**
+  - Start quiz with instructions modal.
+  - Timer for each quiz attempt.
+  - Navigate between questions (Next / Previous).
+  - Submit quiz and view score.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Results**
+  - Detailed results with:
+    - Candidate’s selected answer
+    - Correct answer
+    - Highlighting wrong/correct responses
+
+---
+
+## 🛠️ Tech Stack
+
+**Frontend**
+- React (Vite)
+- Tailwind CSS
+- React Hook Form
+- React Router DOM
+- Axios
+
+**Backend**
+- Node.js
+- Express
+- MongoDB / Mongoose
+
+---
+
+## Clone Project
+
+```
+git clone https://github.com/GaneshturateSDE/QuizAppFront-end
+
+cd QuizAppFront-end
+
+npm install 
+```
+
+## Environment Variables(.env)
+
+```
+VITE_API_URL=http://localhost:3000
+```
+## Run The App
+
+```
+npm run dev
+
+```
